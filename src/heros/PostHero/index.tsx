@@ -14,6 +14,8 @@ export const PostHero: React.FC<{
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
+    console.log('heroImage=== ', heroImage)
+
   return (
     <div className="relative -mt-[10.4rem] flex items-end">
       <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">

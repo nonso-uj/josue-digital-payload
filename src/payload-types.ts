@@ -148,8 +148,9 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
+  fullTitle?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'newHeroImpact' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
       root: {
         type: string;
@@ -191,7 +192,20 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | ServicesBlock
+    | HomeBlock
+    | ContactBlock
+    | AboutBlock
+    | Services1Block
+    | Services2Block
+    | Services3Block
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -203,6 +217,15 @@ export interface Page {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  parent?: (string | null) | Page;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -288,6 +311,14 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
+    'blog-thumbnail'?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     thumbnail?: {
       url?: string | null;
       width?: number | null;
@@ -736,6 +767,111 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock".
+ */
+export interface ServicesBlock {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeBlock".
+ */
+export interface HomeBlock {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homeBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock".
+ */
+export interface AboutBlock {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services1Block".
+ */
+export interface Services1Block {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services1Block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services2Block".
+ */
+export interface Services2Block {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services2Block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services3Block".
+ */
+export interface Services3Block {
+  columns?:
+    | {
+        size?: 'full' | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services3Block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -995,6 +1131,7 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  fullTitle?: T;
   hero?:
     | T
     | {
@@ -1025,6 +1162,13 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        servicesBlock?: T | ServicesBlockSelect<T>;
+        homeBlock?: T | HomeBlockSelect<T>;
+        contactBlock?: T | ContactBlockSelect<T>;
+        aboutBlock?: T | AboutBlockSelect<T>;
+        services1Block?: T | Services1BlockSelect<T>;
+        services2Block?: T | Services2BlockSelect<T>;
+        services3Block?: T | Services3BlockSelect<T>;
       };
   meta?:
     | T
@@ -1036,6 +1180,15 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1126,6 +1279,104 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock_select".
+ */
+export interface ServicesBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeBlock_select".
+ */
+export interface HomeBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services1Block_select".
+ */
+export interface Services1BlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services2Block_select".
+ */
+export interface Services2BlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Services3Block_select".
+ */
+export interface Services3BlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1176,6 +1427,16 @@ export interface MediaSelect<T extends boolean = true> {
   sizes?:
     | T
     | {
+        'blog-thumbnail'?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
         thumbnail?:
           | T
           | {
@@ -1658,15 +1919,10 @@ export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
+    doc?: {
+      relationTo: 'posts';
+      value: string | Post;
+    } | null;
     global?: string | null;
     user?: (string | null) | User;
   };

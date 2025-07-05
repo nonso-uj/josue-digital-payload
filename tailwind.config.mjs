@@ -11,7 +11,7 @@ const config = {
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
   plugins: [tailwindcssAnimate, typography],
-  prefix: '',
+  prefix: 'tw-',
   safelist: [
     'lg:col-span-4',
     'lg:col-span-6',

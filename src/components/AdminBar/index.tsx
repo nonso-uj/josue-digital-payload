@@ -52,6 +52,7 @@ export const AdminBar: React.FC<{
         block: show,
         hidden: !show,
       })}
+      style={{display: show ? 'block' : 'none', color: '#fff', backgroundColor: '#000'}}
     >
       <div className="container">
         <PayloadAdminBar

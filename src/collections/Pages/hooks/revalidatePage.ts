@@ -9,26 +9,50 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
   previousDoc,
   req: { payload, context },
 }) => {
-  if (!context.disableRevalidate) {
-    if (doc._status === 'published') {
-      const path = doc.slug === 'home' ? '/' : `/${doc.slug}`
+  // Skip if revalidation is explicitly disabled (e.g., during seed or system ops)
+  if (context.disableRevalidate) return doc
 
-      payload.logger.info(`Revalidating page at path: ${path}`)
+  const publishedNow = doc._status === 'published'
+  const wasPublished = previousDoc?._status === 'published'
 
+  // Exit early if the page is still a draft and nothing changed
+  if (!publishedNow && !wasPublished) return doc
+
+  const path = doc.slug === 'home' ? '/' : `/${doc.slug}`
+  const oldPath = previousDoc?.slug === 'home' ? '/' : `/${previousDoc?.slug}`
+
+  if (publishedNow) {
+    const breadcrumbs = Array.isArray(doc.breadcrumbs) ? doc.breadcrumbs : []
+
+    if (breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length - 1]?.url) {
+      const breadcrumbPath = breadcrumbs[breadcrumbs.length - 1].url!
+      revalidatePath(breadcrumbPath)
+      payload.logger.info(`Revalidated: ${breadcrumbPath}`)
+
+      if (breadcrumbs[0]?.url === '/home') {
+        revalidatePath('/')
+        payload.logger.info(`Revalidated: /`)
+      }
+    } else {
       revalidatePath(path)
-      revalidateTag('pages-sitemap')
+      payload.logger.info(`Revalidated: ${path}`)
+
+      if (doc.slug === 'home') {
+        revalidatePath('/')
+        payload.logger.info(`Revalidated: /`)
+      }
     }
 
-    // If the page was previously published, we need to revalidate the old path
-    if (previousDoc?._status === 'published' && doc._status !== 'published') {
-      const oldPath = previousDoc.slug === 'home' ? '/' : `/${previousDoc.slug}`
-
-      payload.logger.info(`Revalidating old page at path: ${oldPath}`)
-
-      revalidatePath(oldPath)
-      revalidateTag('pages-sitemap')
-    }
+    revalidateTag('pages-sitemap')
   }
+
+  // If it was unpublished (previously published but now not)
+  if (wasPublished && !publishedNow) {
+    revalidatePath(oldPath)
+    payload.logger.info(`Revalidated old page at path: ${oldPath}`)
+    revalidateTag('pages-sitemap')
+  }
+
   return doc
 }
 

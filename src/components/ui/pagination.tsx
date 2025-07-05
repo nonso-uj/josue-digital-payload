@@ -8,7 +8,7 @@ import * as React from 'react'
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
     aria-label="pagination"
-    className={cn('mx-auto flex w-full justify-center', className)}
+    className={cn('tw-mx-auto tw-flex tw-w-full tw-justify-center', className)}
     role="navigation"
     {...props}
   />
@@ -17,7 +17,11 @@ const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
 const PaginationContent: React.FC<
   { ref?: React.Ref<HTMLUListElement> } & React.HTMLAttributes<HTMLUListElement>
 > = ({ className, ref, ...props }) => (
-  <ul className={cn('flex flex-row items-center gap-1', className)} ref={ref} {...props} />
+  <ul
+    className={cn('tw-flex tw-flex-row tw-items-center tw-gap-1', className)}
+    ref={ref}
+    {...props}
+  />
 )
 
 const PaginationItem: React.FC<
@@ -49,11 +53,11 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    className={cn('gap-1 pl-2.5', className)}
+    className={cn('tw-gap-1 tw-pl-2.5', className)}
     size="default"
     {...props}
   >
-    <ChevronLeft className="h-4 w-4" />
+    <ChevronLeft className="tw-h-4 tw-w-4" />
     <span>Previous</span>
   </PaginationLink>
 )
@@ -61,23 +65,23 @@ const PaginationPrevious = ({
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    className={cn('gap-1 pr-2.5', className)}
+    className={cn('tw-gap-1 tw-pr-2.5', className)}
     size="default"
     {...props}
   >
     <span>Next</span>
-    <ChevronRight className="h-4 w-4" />
+    <ChevronRight className="tw-h-4 tw-w-4" />
   </PaginationLink>
 )
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
   <span
     aria-hidden
-    className={cn('flex h-9 w-9 items-center justify-center', className)}
+    className={cn('tw-flex tw-h-9 tw-w-9 tw-items-center tw-justify-center', className)}
     {...props}
   >
-    <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">More pages</span>
+    <MoreHorizontal className="tw-h-4 tw-w-4" />
+    <span className="tw-sr-only">More pages</span>
   </span>
 )
 

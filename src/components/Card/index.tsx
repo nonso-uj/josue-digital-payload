@@ -32,18 +32,18 @@ export const Card: React.FC<{
   return (
     <article
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
+        'tw-border tw-border-border tw-rounded-lg tw-overflow-hidden tw-bg-card hover:tw-cursor-pointer',
         className,
       )}
       ref={card.ref}
     >
-      <div className="relative w-full ">
+      <div className="tw-relative tw-w-full ">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
       </div>
-      <div className="p-4">
+      <div className="tw-p-4">
         {showCategories && hasCategories && (
-          <div className="uppercase text-sm mb-4">
+          <div className="tw-uppercase tw-text-sm tw-mb-4">
             {showCategories && hasCategories && (
               <div>
                 {categories?.map((category, index) => {
@@ -69,15 +69,15 @@ export const Card: React.FC<{
           </div>
         )}
         {titleToUse && (
-          <div className="prose">
+          <div className="tw-prose">
             <h3>
-              <Link className="not-prose" href={href} ref={link.ref}>
+              <Link className="tw-not-prose" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>
             </h3>
           </div>
         )}
-        {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
+        {description && <div className="tw-mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
       </div>
     </article>
   )

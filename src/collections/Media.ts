@@ -45,6 +45,11 @@ export const Media: CollectionConfig = {
     focalPoint: true,
     imageSizes: [
       {
+        name: 'blog-thumbnail',
+        width: 375,
+        height: 410,
+      },
+      {
         name: 'thumbnail',
         width: 300,
       },

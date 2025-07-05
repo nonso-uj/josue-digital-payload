@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-
+import { revalidatePath } from 'next/cache'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
@@ -12,6 +12,7 @@ import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { fullTitle } from '../../fields/fullTitle'
 
 import {
   MetaDescriptionField,
@@ -20,6 +21,13 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { ServicesBlock } from '@/blocks/ServicesBlock/config'
+import { HomeBlock } from '@/blocks/HomeBlock/config'
+import { ContactBlock } from '@/blocks/ContactBlock/config'
+import { AboutBlock } from '@/blocks/AboutBlock/config'
+import { Services1Block } from '@/blocks/Services1Block/config'
+import { Services2Block } from '@/blocks/Services2Block/config'
+import { Services3Block } from '@/blocks/Services3Block/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -34,10 +42,11 @@ export const Pages: CollectionConfig<'pages'> = {
   // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {
     title: true,
+    breadcrumbs: true,
     slug: true,
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['fullTitle', 'slug', 'createdAt', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -55,7 +64,7 @@ export const Pages: CollectionConfig<'pages'> = {
         collection: 'pages',
         req,
       }),
-    useAsTitle: 'title',
+    useAsTitle: 'fullTitle',
   },
   fields: [
     {
@@ -63,6 +72,7 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'text',
       required: true,
     },
+    fullTitle,
     {
       type: 'tabs',
       tabs: [
@@ -75,11 +85,8 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, ServicesBlock, HomeBlock, ContactBlock, AboutBlock, Services1Block, Services2Block, Services3Block],
               required: true,
-              admin: {
-                initCollapsed: true,
-              },
             },
           ],
           label: 'Content',
@@ -123,17 +130,33 @@ export const Pages: CollectionConfig<'pages'> = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePage],
-    beforeChange: [populatePublishedAt],
-    afterDelete: [revalidateDelete],
+    afterChange: [
+      ({ doc, previousDoc }) => {
+        if (doc._status === 'published' || doc._status !== previousDoc._status) {
+          if (doc.breadcrumbs && doc.breadcrumbs.length > 0) {
+            revalidatePath(doc.breadcrumbs[doc.breadcrumbs.length - 1].url)
+            console.log(`Revalidated: ${doc.breadcrumbs[doc.breadcrumbs.length - 1].url}`)
+            if (doc.breadcrumbs[0].url === '/home') {
+              revalidatePath('/')
+              console.log(`Revalidated: /`)
+            }
+          } else {
+            revalidatePath(`/${doc.slug}`)
+            console.log(`Revalidated: /${doc.slug}`)
+            if (doc.slug === 'home') {
+              revalidatePath('/')
+              console.log(`Revalidated: /`)
+            }
+          }
+        }
+      },
+    ],
+    // afterChange: [revalidatePage],
+    // beforeChange: [populatePublishedAt],
+    // afterDelete: [revalidateDelete],
   },
   versions: {
-    drafts: {
-      autosave: {
-        interval: 100, // We set this interval for optimal live preview
-      },
-      schedulePublish: true,
-    },
+    drafts: true,
     maxPerDoc: 50,
   },
 }

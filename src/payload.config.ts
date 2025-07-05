@@ -5,6 +5,7 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -28,7 +29,7 @@ export default buildConfig({
       beforeLogin: ['@/components/BeforeLogin'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: ['@/components/BeforeDashboard'],
+      // beforeDashboard: ['@/components/BeforeDashboard'],
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -61,6 +62,19 @@ export default buildConfig({
   editor: defaultLexical,
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
+  }),
+  email: nodemailerAdapter({
+    defaultFromAddress: 'info@josuedigital.com',
+    defaultFromName: 'JosueDigital.com',
+    // Nodemailer transportOptions
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    },
   }),
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),

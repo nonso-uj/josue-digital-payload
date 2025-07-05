@@ -24,6 +24,7 @@
   "dependencies": {
     "@payloadcms/admin-bar": "3.44.0",
     "@payloadcms/db-mongodb": "3.44.0",
+    "@payloadcms/email-nodemailer": "^3.45.0",
     "@payloadcms/live-preview-react": "3.44.0",
     "@payloadcms/next": "3.44.0",
     "@payloadcms/payload-cloud": "3.44.0",
@@ -52,9 +53,12 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "7.45.4",
+    "react-slick": "^0.30.3",
     "sharp": "0.32.6",
+    "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

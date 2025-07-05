@@ -10,6 +10,7 @@ import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
+import '@/useTailwind.css'
 
 const { breakpoints } = cssVariables
 
