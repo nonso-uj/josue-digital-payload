@@ -1,8 +1,8 @@
 'use client'
-import { cn } from '@/utilities/ui'
+
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import type { Post } from '@/payload-types'
 
@@ -19,7 +19,7 @@ export const BlogCard: React.FC<{
   title?: string
 }> = (props) => {
   const { card, link } = useClickableCard({})
-  const { className, doc, relationTo, showCategories, title: titleFromProps } = props
+  const { doc, relationTo, showCategories, title: titleFromProps } = props
 
   const { slug, categories, meta, title } = doc || {}
   const { description, image: metaImage } = meta || {}

@@ -14,13 +14,10 @@ import SearchPosts from '@/components/SearchPosts'
 export const dynamic = 'force-dynamic'
 export const revalidate = 600
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Page({
   searchParams,
-}: {
-  searchParams?: {
-    query?: string
-  }
-}) {
+}: any) {
   const query = searchParams?.query || ''
 
   const posts = await fetchPostsBySearch(query)

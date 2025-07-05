@@ -1,12 +1,12 @@
-import { cn } from '@/utilities/ui'
 import React, { Fragment } from 'react'
 import TestimonialSlider from '@/components/TestimonialSlider'
 import ServiceThreeSlider from '@/components/ServiceThreeSlider'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ACADEMY_URL, MARKETING_URL, SALES_URL, ABOUT_URL, SERVICES_URL, CONTACT_URL } from '@/utilities/routes'
+import { ABOUT_URL } from '@/utilities/routes'
 
-export const HomeBlock: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const HomeBlock: React.FC<any> = () => {
   return (
     <Fragment>
       <section className="feature-area-two rel z-1">

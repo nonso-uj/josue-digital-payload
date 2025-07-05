@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
-import ContactForm from '@/components/ContactForm'
 
-export const ContactBlock: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ContactBlock: React.FC<any> = () => {
   return (
     <Fragment>
       <section
@@ -145,43 +145,6 @@ export const ContactBlock: React.FC<any> = (props) => {
           </div>
         </div>
       </section>
-
-      {/* <!-- <div className="contact-page-map " data-aos="fade-up" data-aos-delay="200">
-          <div className="our-location">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m12!1m10!1m3!1d142190.2862584524!2d-74.01298319978558!3d40.721725351435126!2m1!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1663473911885!5m2!1sen!2sbd" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-      </div> --> */}
-
-      {/* <section className="contact-page-form pb-130 rpb-100">
-        <div className="container">
-          <div
-            className="contact-form-wrap form-style-two bgc-lighter "
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div className="row text-center mb-35 justify-content-center">
-              <div className="col-xl-9 col-lg-11">
-                <div
-                  className="section-title mb-25 "
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                >
-                  <span className="sub-title mb-15">Get In Touch</span>
-                  <h2>Send Us A Message</h2>
-                </div>
-                <p>
-                  Have a project in mind? Need assistance with your digital
-                  marketing strategy? Fill out the form below, and one of our
-                  experts will get back to you shortly. We look forward to
-                  helping you achieve digital success!
-                </p>
-              </div>
-            </div>
-
-            <ContactForm />
-          </div>
-        </div>
-      </section> */}
     </Fragment>
   )
 }

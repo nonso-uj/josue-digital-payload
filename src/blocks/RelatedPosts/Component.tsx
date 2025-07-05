@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import RichText from '@/components/RichText'
 
@@ -14,7 +13,7 @@ export type RelatedPostsProps = {
 }
 
 export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
-  const { className, docs, introContent } = props
+  const { docs, introContent } = props
 
   return (
     <div className="next-prev-post py-40 wow fadeInUp delay-0-2s">

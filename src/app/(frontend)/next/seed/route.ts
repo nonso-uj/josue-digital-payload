@@ -10,7 +10,8 @@ export async function POST(): Promise<Response> {
   const requestHeaders = await headers()
 
   // Authenticate by passing request headers
-  const { user } = await payload.auth({ headers: requestHeaders })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { user }: any = await payload.auth({ headers: requestHeaders })
 
   if (!user) {
     return new Response('Action forbidden.', { status: 403 })

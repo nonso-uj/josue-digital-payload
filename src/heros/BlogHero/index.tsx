@@ -1,16 +1,14 @@
-import { formatDateTime } from 'src/utilities/formatDateTime'
 import React from 'react'
 
 import type { Post } from '@/payload-types'
 
-import { Media } from '@/components/Media'
-import { formatAuthors } from '@/utilities/formatAuthors'
 import Link from 'next/link'
 
 export const BlogHero: React.FC<{
   post: Post
 }> = ({ post }) => {
-  const { heroImage, title } = post
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { heroImage, title }: any = post
 
   return (
     <section className="page-banner-area bgs-cover py-135 rpy-100" style={{backgroundImage: `url("${heroImage?.url}");`}}>

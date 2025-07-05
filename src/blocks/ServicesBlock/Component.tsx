@@ -3,7 +3,8 @@ import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { ACADEMY_URL, MARKETING_URL, SALES_URL } from '@/utilities/routes'
 
-export const ServicesBlock: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ServicesBlock: React.FC<any> = () => {
   return (
     <Fragment>
       <section

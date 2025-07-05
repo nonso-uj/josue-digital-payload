@@ -4,7 +4,8 @@ import Link from 'next/link'
 import SideBar from '@/components/SideBar'
 import { ACADEMY_URL, SALES_URL, SERVICES_URL } from '@/utilities/routes'
 
-export const Services3Block: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Services3Block: React.FC<any> = () => {
   return (
     <Fragment>
       <section
@@ -42,7 +43,7 @@ export const Services3Block: React.FC<any> = (props) => {
                 </div>
                 <p>
                   At Josue Digital, we understand the power of online presence and the impact it can
-                  have on your business. That's why we specialize in a range of digital marketing
+                  have on your business. That&apos;s why we specialize in a range of digital marketing
                   services to help you reach your target audience and achieve your business goals.
                 </p>
                 <p>
@@ -64,20 +65,20 @@ export const Services3Block: React.FC<any> = (props) => {
                   Content marketing is at the heart of what we do. Our team of talented content
                   creators crafts engaging, informative, and shareable content that resonates with
                   your target audience. From blog posts and articles to videos and infographics, we
-                  ensure that your brand's message is effectively communicated and drives customer
+                  ensure that your brand&apos;s message is effectively communicated and drives customer
                   engagement.
                 </p>
 
                 <p>
-                  Digital marketing encompasses a wide range of channels, and we've got you covered.
+                  Digital marketing encompasses a wide range of channels, and we&apos;ve got you covered.
                   Our comprehensive digital marketing services cover everything from email marketing
                   and online advertising to affiliate marketing and influencer partnerships. We
-                  leverage the power of digital platforms to maximize your brand's reach and create
+                  leverage the power of digital platforms to maximize your brand&apos;s reach and create
                   meaningful connections with your audience.
                 </p>
 
                 <p>
-                  Social media management is crucial in today's digital landscape, and we take pride
+                  Social media management is crucial in today&apos;s digital landscape, and we take pride
                   in our expertise in this area. We understand the power of social media platforms
                   to engage and interact with your customers. Our social media management strategies
                   are tailored to your business objectives, helping you build a loyal community and

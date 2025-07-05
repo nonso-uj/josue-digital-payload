@@ -1,7 +1,6 @@
-import { cn } from '@/utilities/ui'
 import React, { Fragment } from 'react'
 
-import { Card, CardPostData } from '@/components/Card'
+import { CardPostData } from '@/components/Card'
 import { BlogCard } from '../BlogCard'
 
 export type Props = {

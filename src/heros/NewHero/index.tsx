@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Link from 'next/link'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SampleNextArrow(props: any) {
   const { style, onClick } = props
   return (
@@ -18,6 +19,7 @@ function SampleNextArrow(props: any) {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SamplePrevArrow(props: any) {
   const { style, onClick } = props
   return (
@@ -28,6 +30,7 @@ function SamplePrevArrow(props: any) {
 }
 
 export const NewHeroImpact: React.FC<Page['hero']> = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sliderRef = useRef<any>(null)
 
   const settings = {

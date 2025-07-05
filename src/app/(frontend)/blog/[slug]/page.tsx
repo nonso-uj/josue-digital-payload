@@ -11,9 +11,7 @@ import RichText from '@/components/RichText'
 
 import type { Post } from '@/payload-types'
 
-import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { BlogHero } from '@/heros/BlogHero'
 import Link from 'next/link'
@@ -240,13 +238,6 @@ export default async function Post({ params: paramsPromise }: Args) {
                     <input
                       type="text"
                       placeholder="Find Keywords"
-                      // onChange={(e: any) => {
-                      //   if (e.target.value) {
-                      //     setQ(e.target.value);
-                      //   } else {
-                      //     setQ(e.target.value);
-                      //   }
-                      // }}
                     />
                   </form>
                 </div>

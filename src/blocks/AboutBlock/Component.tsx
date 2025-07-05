@@ -3,9 +3,10 @@ import React, { Fragment } from 'react'
 import TestimonialSlider from '@/components/TestimonialSlider'
 // import Image from 'next/image'
 import Link from 'next/link'
-import { CONTACT_URL, MARKETING_URL, SALES_URL } from '@/utilities/routes'
+import { CONTACT_URL } from '@/utilities/routes'
 
-export const AboutBlock: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const AboutBlock: React.FC<any> = () => {
   return (
     <Fragment>
       <section
@@ -62,7 +63,7 @@ export const AboutBlock: React.FC<any> = (props) => {
                     to develop targeted strategies that resonate with your specific audience.
                     Whether you are in retail, finance, healthcare, technology, or any other
                     industry, we have the expertise to create tailored solutions that will elevate
-                    your brand's digital presence.
+                    your brand&apos;s digital presence.
                   </p>
                   <p>
                     Our digital marketing services cover a wide spectrum of strategies designed to

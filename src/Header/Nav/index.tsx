@@ -12,7 +12,8 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     <Fragment>
       <div className="navbar-collapse collapse clearfix">
         <ul className="navigation clearfix">
-          {navItems.map(({ link }, i) => {
+          { // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          navItems.map(({ link }: any, i) => {
             return (
               <li key={i}>
                 <Link href={link.type === 'custom' ? `${link?.url}` : link.type === 'reference' ? `/${link.reference?.value?.slug}` : '/'}>{link.label}</Link>

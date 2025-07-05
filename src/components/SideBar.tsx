@@ -19,7 +19,7 @@ const SideBar = () => {
               </ul>
           </div>
           <div className="widget widget-cta" style={{backgroundImage: "url('/images/widgets/cta-widget-bg.jpg')"}}>
-              <span className="h5">Let's Work Together</span>
+              <span className="h5">Let&apos;s Work Together</span>
               <h2>Josue Digital</h2>
               <Link href={CONTACT_URL} className="theme-btn style-four">Contact Us <i className="fas fa-angle-double-right"></i></Link><br />
               <a href="tel:+2349040014613" className="number"><i className="fas fa-phone"></i> +234 0904 001 4613</a>

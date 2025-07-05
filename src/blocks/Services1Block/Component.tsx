@@ -5,7 +5,8 @@ import SideBar from '@/components/SideBar'
 
 import { ACADEMY_URL, MARKETING_URL, SERVICES_URL } from '@/utilities/routes'
 
-export const Services1Block: React.FC<any> = (props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Services1Block: React.FC<any> = () => {
   return (
     <Fragment>
       <section
@@ -43,19 +44,19 @@ export const Services1Block: React.FC<any> = (props) => {
                 </div>
                 <p>
                   Unlock the power of digital marketing and content marketing with our comprehensive
-                  online courses. Whether you're a seasoned professional looking to enhance your
+                  online courses. Whether you&apos;re a seasoned professional looking to enhance your
                   skills or a beginner eager to dive into the exciting world of online marketing,
                   our academy has the tools and knowledge you need to succeed.
                 </p>
                 <p>
                   At our Online Marketing Academy, we believe that effective marketing is the key to
-                  driving business growth in today's digital landscape. That's why our courses are
+                  driving business growth in today&apos;s digital landscape. That&apos;s why our courses are
                   designed to equip you with the latest strategies and techniques that will propel
                   your brand forward.
                 </p>
 
                 <p>
-                  Unlock the full potential of your business with Josue Digital's cutting-edge Sales
+                  Unlock the full potential of your business with Josue Digital&apos;s cutting-edge Sales
                   and Lead Generation Solutions. We understand that every industry has unique
                   requirements, which is why we have crafted custom-made business solutions tailored
                   specifically for the fashion and accessories, food, logistics, and manufacturing
@@ -79,7 +80,7 @@ export const Services1Block: React.FC<any> = (props) => {
 
                 <p>
                   In the fashion and accessories industry, we offer comprehensive solutions to help
-                  you amplify your brand's reach, boost sales, and generate leads. From digital
+                  you amplify your brand&apos;s reach, boost sales, and generate leads. From digital
                   marketing strategies that capture the attention of your target audience to
                   conversion optimization techniques that drive sales, we have you covered.
                 </p>
@@ -108,9 +109,9 @@ export const Services1Block: React.FC<any> = (props) => {
                 </p>
 
                 <p>
-                  Don't let your business be left behind in this rapidly evolving digital landscape.
-                  Contact us today to embark on a journey of success with Josue Digital's Sales and
-                  Lead Generation Solutions. Together, let's create a thriving future for your
+                  Don&apos;t let your business be left behind in this rapidly evolving digital landscape.
+                  Contact us today to embark on a journey of success with Josue Digital&apos;s Sales and
+                  Lead Generation Solutions. Together, let&apos;s create a thriving future for your
                   business.
                 </p>
               </div>

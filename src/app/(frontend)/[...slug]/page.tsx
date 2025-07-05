@@ -2,15 +2,12 @@ import type { Metadata } from 'next'
 import config from '@payload-config'
 import type { Media } from '@/payload-types'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
-import configPromise from '@payload-config'
-import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
+import React from 'react'
 import { unstable_cache } from 'next/cache'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
-import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
@@ -94,6 +91,7 @@ export const fetchPages = async (): Promise<Partial<Page>[]> => {
   return data.docs
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getPage = async (slug: any, draft?: any) =>
   draft ? fetchPage(slug) : unstable_cache(fetchPage, [`page-${slug}`])(slug)
 
@@ -108,6 +106,7 @@ export async function generateStaticParams() {
 
 type Args = {
   params: Promise<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     slug?: any
   }>
 }
@@ -154,6 +153,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     slug: any
   }>
 }): Promise<Metadata> {
