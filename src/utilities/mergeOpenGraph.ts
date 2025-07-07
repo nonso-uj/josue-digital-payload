@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
-import { getServerSideURL } from './getURL'
+// import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'An open-source website built with Payload and Next.js.',
+  description: 'At Josue Digital, our industry specialists develop customized digital marketing strategies—SEO, PPC, social media, content—to elevate your brands online presence and drive conversions.',
   images: [
     {
-      url: `${getServerSideURL()}/website-template-OG.webp`,
+      url: 'images/slider/og-image.jpg',
     },
   ],
-  siteName: 'Josue Digital | Digital Marketing. Elevated.',
+  siteName: 'Josue Digital',
   title: 'Josue Digital | Digital Marketing. Elevated.',
 }
 
