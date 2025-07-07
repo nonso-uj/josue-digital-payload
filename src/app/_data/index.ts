@@ -4,8 +4,6 @@ import configPromise from '@payload-config'
 export async function fetchPostsBySearch(query: string) {
   const payload = await getPayload({ config: configPromise })
 
-  console.log('find=== ', query)
-
   const results = await payload.find({
     collection: 'posts',
     depth: 1,

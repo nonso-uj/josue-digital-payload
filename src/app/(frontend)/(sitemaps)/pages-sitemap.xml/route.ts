@@ -9,7 +9,7 @@ const getPagesSitemap = unstable_cache(
     const SITE_URL =
       process.env.NEXT_PUBLIC_SERVER_URL ||
       process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      'https://example.com'
+      'https://josuedigital.com'
 
     const results = await payload.find({
       collection: 'pages',
@@ -26,6 +26,7 @@ const getPagesSitemap = unstable_cache(
       select: {
         slug: true,
         updatedAt: true,
+        breadcrumbs: true,
       },
     })
 
@@ -46,8 +47,15 @@ const getPagesSitemap = unstable_cache(
       ? results.docs
           .filter((page) => Boolean(page?.slug))
           .map((page) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const { breadcrumbs }: any = page
+            const slug =
+              Array.isArray(page?.slug) || Array.isArray(breadcrumbs)
+                ? breadcrumbs?.[breadcrumbs.length - 1]?.url?.replace(/^\/|\/$/g, '')
+                : page?.slug
+
             return {
-              loc: page?.slug === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${page?.slug}`,
+              loc: page?.slug === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${slug}`,
               lastmod: page.updatedAt || dateFallback,
             }
           })

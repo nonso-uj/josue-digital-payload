@@ -7,6 +7,7 @@ import React from 'react'
 import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+import Image from 'next/image'
 
 export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
 
@@ -32,12 +33,16 @@ export const BlogCard: React.FC<{
   return (
     <article ref={card.ref} className="blog-standard-item wow fadeInUp delay-0-2s">
       <div className="image">
-        {!metaImage && <div className="">No image</div>}
+        {!metaImage && (
+          <div className="">
+            <Image src="/images/background/blog.jpg" width={403} height={410} alt="Blog picture" />
+          </div>
+        )}
         {metaImage && typeof metaImage !== 'string' && (
           <Media
             resource={metaImage}
             imgClassName={'tw-h-[410px] object-cover'}
-            size={"(max-width: 1200px) 375px, 1200px"}
+            size={'(max-width: 1200px) 375px, 1200px'}
           />
         )}
       </div>

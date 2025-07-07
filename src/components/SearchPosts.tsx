@@ -10,7 +10,6 @@ export default function SearchPosts({ placeholder }: { placeholder: string }) {
 
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams)
-    console.log('term=== ', term)
     if (term) {
       params.set('query', term)
     } else {

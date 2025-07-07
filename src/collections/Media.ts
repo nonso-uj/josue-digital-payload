@@ -41,6 +41,7 @@ export const Media: CollectionConfig = {
   upload: {
     // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
     staticDir: path.resolve(dirname, '../../public/media'),
+    // staticDir: 'https://api.cloudinary.com/v1_1/delysqy5t/resources/image/upload/josue-digital-media/',
     adminThumbnail: 'thumbnail',
     focalPoint: true,
     imageSizes: [
@@ -79,6 +80,21 @@ export const Media: CollectionConfig = {
         width: 1200,
         height: 630,
         crop: 'center',
+      },
+    ],
+  },
+  hooks: {
+    beforeOperation: [
+      ({ req, operation }) => {
+        if ((operation === 'create' || operation === 'update') && req.file) {
+          const sanitizedName = req.file.name
+            .toLowerCase()
+            .replace(/\.[^/.]+$/, '')
+            .replace(/[^a-z0-9]/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '')
+          req.file.name = `${sanitizedName}.${req.file.mimetype.split('/')[1]}`
+        }
       },
     ],
   },

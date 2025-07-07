@@ -55,8 +55,6 @@ export default async function Post({ params: paramsPromise }: Args) {
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
-  console.log('populatedAuthors=== ', populatedAuthors)
-
   if (!post) return <PayloadRedirects url={url} />
 
   return (

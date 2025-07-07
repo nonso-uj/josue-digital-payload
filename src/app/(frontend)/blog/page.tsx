@@ -2,7 +2,7 @@ import type { Metadata } from 'next/types'
 
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
-import React, { Fragment } from 'react'
+import React, { Fragment, Suspense } from 'react'
 import Link from 'next/link'
 import '@/useTailwind.css'
 import { CONTACT_URL } from '@/utilities/routes'
@@ -15,12 +15,10 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 600
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function Page({
-  searchParams,
-}: any) {
-  const query = searchParams?.query || ''
+export default async function Page({ searchParams }: any) {
+  const query = await searchParams
 
-  const posts = await fetchPostsBySearch(query)
+  const posts = await fetchPostsBySearch(query?.query || '')
 
   if (!posts) return notFound()
 
@@ -68,7 +66,9 @@ export default async function Page({
             </div>
             <div className="col-lg-4 col-md-7 col-sm-9">
               <div className="main-sidebar rmt-75">
-                <SearchPosts placeholder="Find Keywords" />
+                <Suspense>
+                  <SearchPosts placeholder="Find Keywords" />
+                </Suspense>
 
                 <div className="widget widget-cta wow fadeInUp delay-0-2s px-1">
                   <h4>Book Marketting Consultation</h4>
@@ -98,6 +98,6 @@ export default async function Page({
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Posts`,
+    title: `Blog | Josue Digital | Digital Marketing. Elevated.`,
   }
 }

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import { CardPostData } from '@/components/Card'
 import { BlogCard } from '../BlogCard'
+import LoadingComponent from '../LoadingComponent'
 
 export type Props = {
   posts: CardPostData[]
@@ -14,7 +15,7 @@ export const BlogArchive: React.FC<Props> = (props) => {
     <div className="blog-standard-inner">
       {!posts ? (
         <>
-          <p>Loading...</p>
+          <LoadingComponent />
         </>
       ) : (
         <>

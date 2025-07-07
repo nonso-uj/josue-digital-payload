@@ -5,6 +5,7 @@ import type { Footer } from '@/payload-types'
 import {
   ABOUT_URL,
   ACADEMY_URL,
+  BLOG_URL,
   CONTACT_URL,
   MARKETING_URL,
   SALES_URL,
@@ -92,18 +93,18 @@ export async function Footer() {
               </form>
               <h5>Follow Us</h5>
               <div className="social-style-one">
-                <a href="#">
+                <a href="https://web.facebook.com/josuedigital29" target='_blank'>
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#">
+                <a href="https://x.com/josue_digital" target='_blank'>
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#">
+                <a href="https://www.instagram.com/josuedigital__" target='_blank'>
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#">
+                {/* <a href="#">
                   <i className="fab fa-linkedin-in"></i>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -123,8 +124,12 @@ export async function Footer() {
                     <li>
                       <Link href={SERVICES_URL}>Latest Services</Link>
                     </li>
-                    {/* <li><Link href={PORTFOLIO_URL}>Popular Works</Link></li> */}
-                    {/* <!-- <li><a href="<?php echo site_url('/blog') ?>">Blog & News</a></li> --> */}
+                    <li>
+                      <Link href={BLOG_URL}>Blog & News</Link>
+                    </li>
+                    <li>
+                      <Link href={CONTACT_URL}>Contact us</Link>
+                    </li>
                   </ul>
                 </div>
               </div>

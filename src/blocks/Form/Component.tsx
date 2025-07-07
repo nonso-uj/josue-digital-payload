@@ -12,6 +12,7 @@ import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
 
 import '@/useTailwind.css'
+import LoadingComponent from '@/components/LoadingComponent'
 
 export type FormBlockType = {
   blockName?: string
@@ -129,7 +130,12 @@ export const FormBlock: React.FC<
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
           )}
-          {isLoading && !hasSubmitted && <p className='tw-text-xl tw-text-amber-400 tw-font-semibold'>Loading, please wait...</p>}
+          {isLoading && !hasSubmitted && (
+            <div className='tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-y-5'>
+              <LoadingComponent />
+              <p className='tw-text-xl tw-text-amber-400 tw-font-semibold'>Loading, please wait...</p>
+            </div>
+          )}
           {error && <div className='tw-text-red-600'>{`${error.status || '500'}: ${error.message || ''}`}</div>}
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>

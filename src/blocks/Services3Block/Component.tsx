@@ -15,7 +15,7 @@ export const Services3Block: React.FC<any> = () => {
         <div className="container">
           <div className="banner-inner text-white text-center">
             <h1 className="page-title " data-aos="fade-up" data-aos-delay="200">
-              Digital Marketing Services
+              `Digital Marketing Services`
             </h1>
             <nav aria-label="breadcrumb">
               <ol

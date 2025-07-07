@@ -116,8 +116,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { slug } = await paramsPromise
   const url = '/' + (Array.isArray(slug) ? slug.join('/') : slug)
 
-  console.log('gets here page=== ', slug, url)
-
   // let page: RequiredDataFromCollectionSlug<'pages'> | null
 
   // page = await queryPageBySlug(slug)
@@ -181,10 +179,10 @@ export async function generateMetadata({
             },
           ]
         : undefined,
-      title: page?.meta?.title || 'Payload',
+      title: page?.meta?.title || 'Josue Digital | Digital Marketing. Elevated.',
       url: Array.isArray(slug) ? slug.join('/') : '/',
     }),
-    title: page?.meta?.title || 'Payload',
+    title: page?.meta?.title || 'Josue Digital | Digital Marketing. Elevated.',
     // ...noIndexMeta, // Add noindex meta tag if noindex is true
   }
 }

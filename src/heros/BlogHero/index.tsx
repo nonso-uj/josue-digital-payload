@@ -9,9 +9,10 @@ export const BlogHero: React.FC<{
 }> = ({ post }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { heroImage, title }: any = post
+  const imageUrl = heroImage?.url ? heroImage?.url : '/images/background/blog.jpg'
 
   return (
-    <section className="page-banner-area bgs-cover py-135 rpy-100" style={{backgroundImage: `url("${heroImage?.url}");`}}>
+    <section className="page-banner-area bgs-cover py-135 rpy-100" style={{backgroundImage: `url('${imageUrl}')`}}>
             <div className="container">
                 <div className="banner-inner text-white text-center">
                     <h1 className="page-title wow fadeInUp delay-0-2s">{title}</h1>
