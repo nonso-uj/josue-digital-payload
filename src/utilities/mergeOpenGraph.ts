@@ -3,7 +3,8 @@ import type { Metadata } from 'next'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'At Josue Digital, our industry specialists develop customized digital marketing strategies—SEO, PPC, social media, content—to elevate your brands online presence and drive conversions.',
+  description:
+    'At Josue Digital, our industry specialists develop customized digital marketing strategies—SEO, PPC, social media, content—to elevate your brands online presence and drive conversions.',
   images: [
     {
       url: 'images/slider/og-image.jpg',
