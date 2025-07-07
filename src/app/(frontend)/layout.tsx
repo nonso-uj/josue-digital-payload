@@ -20,34 +20,54 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import Script from 'next/script'
 
+const GA_MEASUREMENT_ID = 'G-C6586VH9R6'
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Load gtag.js library */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+          async
+        />
+
+        {/* Initialize dataLayer and configure gtag */}
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
         {/* <InitTheme /> */}
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
         <div className="page-wrapper">
-
           {/* Preloader */}
-        {/* <div className="preloader"><div className="custom-loader"></div></div> */}
+          {/* <div className="preloader"><div className="custom-loader"></div></div> */}
 
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+          <Providers>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
 
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
-        <button className="scroll-top scroll-to-target" data-target="html">
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+          <button className="scroll-top scroll-to-target" data-target="html">
             <span className="fas fa-angle-double-up"></span>
           </button>
         </div>
